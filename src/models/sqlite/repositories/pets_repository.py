@@ -12,7 +12,7 @@ class PetsRepository:
         pets = database.session.query(PetsTable).all()
         return pets
       except NoResultFound:
-        return []
+        return None
   
   def delete_pets(self, name: str) -> None:
     with self.__db_connection as database:

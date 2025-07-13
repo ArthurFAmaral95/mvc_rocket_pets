@@ -1,9 +1,9 @@
 from unittest import mock
 import pytest
 from mock_alchemy.mocking import UnifiedAlchemyMagicMock
-from sqlalchemy.orm.exc import NoResultFound
 from src.models.sqlite.entities.pets import PetsTable
 from .pets_repository import PetsRepository
+from .people_repository_test import MockConnectionNoResult
 
 class MockConnection:
   def __init__(self) -> None:
@@ -19,20 +19,6 @@ class MockConnection:
       ]
     )
     
-  def __enter__(self):
-    return self
-  
-  def __exit__(self, exc_type, exc_val, exc_tb):
-    pass
-
-class MockConnectionNoResult:
-  def __init__(self) -> None:
-    self.session = UnifiedAlchemyMagicMock()
-    self.session.query.side_effect = self.__raise_no_result_found
-
-  def __raise_no_result_found(self, *args, **kwargs):
-    raise NoResultFound('No result found')
-  
   def __enter__(self):
     return self
   
@@ -72,7 +58,7 @@ def test_list_pets_no_result():
   mock_connection.session.all.assert_not_called()
   mock_connection.session.filter.assert_not_called()
 
-  assert response == []
+  assert response is None
 
 def test_delete_pet_error():
   mock_connection = MockConnectionNoResult()
