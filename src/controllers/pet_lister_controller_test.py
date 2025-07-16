@@ -7,6 +7,10 @@ class MockPetRepository:
       PetsTable(name='Rex', type='fish', id=1),
       PetsTable(name='Dog', type='cat', id=2)
     ]
+  
+class MockPetRepositoryError:
+  def list_pets(self):
+    return []
 
 def test_list_pets():
   controller = PetListerController(MockPetRepository())
@@ -23,4 +27,17 @@ def test_list_pets():
       }
     }
   
+  assert response == expected_response
+
+def test_list_pets_error():
+  controller = PetListerController(MockPetRepositoryError())
+  response = controller.list()
+
+  expected_response = {
+      'data': {
+        'type': "Pets",
+        'count': 0,
+        'attributes': []
+      }
+    }
   assert response == expected_response
