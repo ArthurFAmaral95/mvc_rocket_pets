@@ -2,10 +2,10 @@ from .person_finder_view import PersonFinderView
 from .http_types.http_request import HttpRequest
 
 class MockPersonFinderController:
-  def find(self) -> None:
+  def find(self, _person_id: int) -> None:
     return {
       'data': {
-       'type': 'Person',
+       'type': 'Person_test',
        'count': 1,
        'attributes': {
          'first_name': 'Fulano',
@@ -22,4 +22,4 @@ def test_handle():
   response = view.handle(http_request)
 
   assert response.status_code == 200
-  assert response.body == {'data': {'type': 'Person', 'count': 1, 'attributes': {'first_name': 'Fulano', 'last_name': 'de Tal', 'pet_name': 'Rex', 'pet_type': 'Fish'}}}
+  assert response.body == {'data': {'type': 'Person_test', 'count': 1, 'attributes': {'first_name': 'Fulano', 'last_name': 'de Tal', 'pet_name': 'Rex', 'pet_type': 'Fish'}}}
