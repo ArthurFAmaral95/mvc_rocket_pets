@@ -9,8 +9,7 @@ disable=
       E0015, # unrecognized option
       C0303, # trailing-whitespace
       C0301, # line-too-long
-      W0719, # broad-exception-raised,
-      R0801, # Similar lines in 2 files
+      W0719, # broad-exception-raised
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
