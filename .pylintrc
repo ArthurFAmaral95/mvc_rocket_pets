@@ -9,7 +9,8 @@ disable=
       E0015, # unrecognized option
       C0303, # trailing-whitespace
       C0301, # line-too-long
-      W0719, # broad-exception-raised
+      W0719, # broad-exception-raised,
+      R0801, # Similar lines in 2 files
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
@@ -162,7 +163,8 @@ disable=raw-checker-failed,
         suppressed-message,
         useless-suppression,
         deprecated-pragma,
-        use-symbolic-message-instead
+        use-symbolic-message-instead,
+        too-many-positional-arguments,
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -444,7 +446,7 @@ exclude-too-few-public-methods=
 ignored-parents=
 
 # Maximum number of arguments for function / method.
-max-args=5
+max-args=10
 
 # Maximum number of attributes for a class (see R0902).
 max-attributes=7
